@@ -1,7 +1,13 @@
 import { addField } from './commands/addField';
+import { Telegram } from './client';
+
+function launchCommands() {
+    addField();
+}
 
 function interactWithTelegram() {
-    addField();
+    launchCommands();
+    Telegram.launch();
 }
 
 export { interactWithTelegram };
