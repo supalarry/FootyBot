@@ -1,9 +1,18 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import Logger from './services/logger';
-import config from './config/server';
+import server from './config/server';
 
 const NAMESPACE = 'Server';
 
 const router = express();
 
-router.listen(config.server.port, () => Logger.info(NAMESPACE, `Server is running ${config.server.hostname}:${config.server.port}`));
+// API health check
+router.get('/ping', (req: Request, res: Response) => {
+    return res.status(200).json({
+        message: 'pong'
+    });
+});
+
+router.listen(server.port, () => {
+    Logger.info(NAMESPACE, `[${server.environment}] Server is running ${server.hostname}:${server.port}`);
+});

@@ -11,3 +11,6 @@ certs/**/*
 .env
 
 .DS_Store
+# Supabase
+**/supabase/.branches
+**/supabase/.temp

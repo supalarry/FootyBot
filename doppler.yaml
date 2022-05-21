@@ -1,0 +1,3 @@
+setup:
+    project: footy-bot
+    config: dev

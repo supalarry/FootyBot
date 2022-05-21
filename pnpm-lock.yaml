@@ -2,10 +2,8 @@ lockfileVersion: 5.3
 
 specifiers:
   '@supabase/supabase-js': 1.33.3
-  '@types/dotenv': 8.2.0
   '@types/express': 4.17.13
   '@types/node': 17.0.35
-  dotenv: 10.0.0
   express: 4.18.1
   nodemon: 2.0.12
   prettier: 2.4.1
@@ -14,11 +12,9 @@ specifiers:
 
 dependencies:
   '@supabase/supabase-js': 1.33.3
-  dotenv: 10.0.0
   express: 4.18.1
 
 devDependencies:
-  '@types/dotenv': 8.2.0
   '@types/express': 4.17.13
   '@types/node': 17.0.35
   nodemon: 2.0.12
@@ -133,13 +129,6 @@ packages:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
       '@types/node': 17.0.35
-    dev: true
-
-  /@types/dotenv/8.2.0:
-    resolution: {integrity: sha512-ylSC9GhfRH7m1EUXBXofhgx4lUWmFeQDINW5oLuS+gxWdfUeW4zJdeVTYVkexEW+e2VUvlZR2kGnGGipAWR7kw==}
-    deprecated: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
-    dependencies:
-      dotenv: 10.0.0
     dev: true
 
   /@types/express-serve-static-core/4.17.28:
@@ -537,10 +526,6 @@ packages:
     dependencies:
       is-obj: 2.0.0
     dev: true
-
-  /dotenv/10.0.0:
-    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
-    engines: {node: '>=10'}
 
   /duplexer3/0.1.4:
     resolution: {integrity: sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=}
