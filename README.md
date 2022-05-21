@@ -19,6 +19,11 @@ This project uses the `pnpm` dependency manager.
 
 # Local development
 
+## Docker
+
+1. Install Docker
+2. Start the Docker app
+
 ## Secrets
 
 1. Install Doppler CLI: https://docs.doppler.com/docs/install-cli
@@ -29,15 +34,27 @@ This project uses the `pnpm` dependency manager.
 
 ## Database
 
-We are using supabase for the local development.
+We are using supabase which runs Postgres. Next, we use Prisma to interact with supabase.
 
 1. Install supabase `brew install supabase/tap/supabase`
+2. When running `npx prisma` prepend `doppler run --` before it:
 
-2. Create supabase token called `FOOTY_BOT_LOCAL_DEVELOPMENT` in your account: https://app.supabase.io/account/tokens
+```
+doppler run -- npx prisma migrate dev --init
+```
 
-3. Log into supabase and pass token you created `supabase login`
+## Accessing Database via a GUI
 
-4. Start supabase `supabase start`
+1. Install TablePlus. It allows to view database visually.
+2. Use following credentials to connect
+
+```
+host: 127.0.0.1
+port: 54322
+user: postgres
+password: postgres
+database: postgres
+```
 
 ## Endpoints
 
