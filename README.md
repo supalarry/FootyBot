@@ -1,6 +1,6 @@
 # FootyBot
 
-FootyBot is a Telegram bot that allows to organize football matches.
+FootyBot helps organizing football matches. It is a Telegram Bot and can be added to any group.
 
 ```
                      ___
