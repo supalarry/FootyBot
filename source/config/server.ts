@@ -8,7 +8,7 @@ function isProduction() {
 }
 
 const hostname = environment === PRODUCTION ? process.env.RENDER_EXTERNAL_URL : 'localhost';
-const port = environment === PRODUCTION ? 3001 : 3000;
+const port = 3001;
 
 const server = {
     environment,
