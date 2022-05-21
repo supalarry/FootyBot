@@ -1,4 +1,13 @@
-# PalermoFooty
+# FootyBot
+
+FootyBot is a Telegram bot that allows to organize football matches.
+
+```
+                     ___
+ o__        o__     |   |\
+/|          /\      |   |X\
+/ > o        <\     |   |XX\
+```
 
 # Local development environment
 
