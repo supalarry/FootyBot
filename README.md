@@ -1,23 +1,14 @@
 # PalermoFooty
 
-## Local development
+# Local development environment
 
-This project uses the `pnpm` dependency manager.
+Finish next sections in the order listed.
 
-1. Run `pnpm install` to install dependencies.
-2. Add keys in `.env.local` and rename it to `.env`.
-3. Run `pnpm dev` to start the development server.
-4. Access dev server on `localhost:3001`
-5. Access prod server on `https://footybot.onrender.com`
+## Environment requirements
 
-## Tech stack
-
-1. Node.js + Express + TypeScript
-2. Server hosted on Render
-3. Postgres database hosted in Supabase
-4. Secrets managed by Doppler
-
-# Local development
+1. This project requires Node 16 or higher to be installed on your machine.
+2. This project uses the `pnpm` dependency manager with all the dependencies being pinned. Run `corepack enable` and then `corepack prepare pnpm@<version> --activate` where `<version>` has to be
+   replaced by the version listed in package.json packageManager key.
 
 ## Docker
 
@@ -37,11 +28,17 @@ This project uses the `pnpm` dependency manager.
 We are using supabase which runs Postgres. Next, we use Prisma to interact with supabase.
 
 1. Install supabase `brew install supabase/tap/supabase`
-2. When running `npx prisma` prepend `doppler run --` before it:
+2. When running `npx prisma` in the future prepend `doppler run --` before it:
 
 ```
 doppler run -- npx prisma migrate dev --init
 ```
+
+## Starting development environment
+
+1. Run `pnpm install` to install dependencies.
+2. Run `pnpm dev` to start the development server and database.
+3. Access dev server on `localhost:3001`
 
 ## Accessing Database via a GUI
 
@@ -56,92 +53,33 @@ password: postgres
 database: postgres
 ```
 
-## Endpoints
+# Telegram bot
 
-### 1. Server health check
+Within `dev` and `prod` doppler configs we have a `TELEGRAM_KEY` token. It points to a specific Telegram bot and is used to set up a client via which we interact with Telegram.
 
-Endpoint: `/api/ping`
+## Local development
 
-Method: `GET`
+Name: `FootyTestBot`; Username: `football_with_footy_test_bot`; Link: `t.me/football_with_footy_test_bot`;
+
+## Production environment
+
+Name: `FootyBot`; Username: `football_with_footy_bot`; Link: `t.me/football_with_footy_bot`;
+
+# Telegram bot commands
+
+The commands reside in `source/telegram/commands`.
+
+### addField: Add a new football field
+
+command: `/add_field`
+
+description: add a new football field
 
 Response: `{ "message": "pong" }`
 
-### 2. Db version
+## Tech stack
 
-Endpoint: `/api/db/version`
-
-Method: `GET`
-
-Response:
-
-```
-{
-   "version": 62,
-   "lastMigration": "20220411085539_add_fellow_to_company"
-}
-```
-
-### 3. Headsup list
-
-Endpoint: `/api/headsup`
-
-Method: `GET`
-
-Response:
-
-```
-{
-    "messages": [
-        {
-            "type": "warning",
-            "text": "Someone spilled coffee on Sentry servers, so Vercel builds are failing"
-        },
-        {
-            "type": "info",
-            "text": "New joiner - let's welcome Robert Cecil Martin to the team!"
-        },
-        {
-            "type": "success",
-            "text": "Prisma was updated to the latest version 30.0.0!"
-        }
-    ]
-}
-```
-
-### 4. Headsup add
-
-Endpoint: `/api/headsup`
-
-Method: `POST`
-
-Request body:
-
-```
-{
-    "type": "info",
-    "text": "On Deck raised series C 100 million!!!"
-}
-```
-
-Response:
-
-```
-{
-    "id": 8,
-    "created_at": "2022-04-13T09:19:10.744756+00:00",
-    "type": "info",
-    "text": "On Deck raised series C 100 million!!!"
-}
-```
-
-## Adding an endpoint
-
-Endpoint consists of a route and a handler. Route specifies method and endpoint. Handler specifies how the request is handled. Route then implements the handler. Finally, the route is added to the
-server.
-
-1. Create a new controller in `source/controllers`. Check existing controller as an example.
-2. Create a new route in `source/routes`. Check existing route as an example.
-3. Add the controller to the new route.
-4. In `source/server.ts` add the new route.
-    1. Search for `router.use('/api/`
-    2. Add the new route.
+1. Node.js + Express + TypeScript
+2. Server hosted on Render
+3. Postgres database hosted in Supabase
+4. Secrets managed by Doppler
