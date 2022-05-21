@@ -8,6 +8,8 @@ const router = express();
 
 // API health check
 router.get('/ping', (req: Request, res: Response) => {
+    Logger.info(NAMESPACE, 'API health check invoked');
+
     return res.status(200).json({
         message: 'pong'
     });
