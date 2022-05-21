@@ -1,5 +1,5 @@
 import { addField } from './commands/addField';
-import { Telegram } from './client';
+import { TelegramBot } from './client';
 
 function enableCommands() {
     addField();
@@ -7,7 +7,7 @@ function enableCommands() {
 
 function launchTelegramBot() {
     enableCommands();
-    Telegram.launch();
+    TelegramBot.launch();
 }
 
 export { launchTelegramBot };

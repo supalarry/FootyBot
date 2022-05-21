@@ -7,6 +7,6 @@ if (!token) {
     process.exit(1);
 }
 
-const Telegram = new Telegraf(token);
+const TelegramBot = new Telegraf(token);
 
-export { Telegram };
+export { TelegramBot };

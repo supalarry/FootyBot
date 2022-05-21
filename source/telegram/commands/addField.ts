@@ -1,7 +1,7 @@
-import { Telegram } from '../client';
+import { TelegramBot } from '../client';
 
 function addField() {
-    Telegram.command('add_field', (ctx) => {
+    TelegramBot.command('add_field', (ctx) => {
         ctx.telegram.sendMessage(ctx.message.chat.id, `Hello ${ctx.state.role}`);
     });
 }
