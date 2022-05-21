@@ -1,6 +1,7 @@
 # FootyBot
 
-FootyBot helps organizing football matches. It is a Telegram Bot and can be added to any group.
+FootyBot helps organizing football matches. It is a Telegram Bot and can be added to any group. I moved to Palermo, Italy and have no idea who plays where, so I am on a mission to bring this tool to
+life so that I can play football again.
 
 ```
                      ___
