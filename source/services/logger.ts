@@ -1,4 +1,4 @@
-import { getTimeStamp } from '../helpers/time-helper';
+import { getTimeStamp } from '../helpers/time';
 import util from 'util';
 
 export default class Logger {
