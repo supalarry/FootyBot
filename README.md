@@ -1,4 +1,4 @@
-# od-cli-api
+# PalermoFooty
 ## Local development
 This project uses the `pnpm` dependency manager.
 1. Run `pnpm install` to install dependencies.

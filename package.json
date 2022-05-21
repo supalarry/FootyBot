@@ -1,8 +1,8 @@
 {
-    "name": "od-cli-api",
+    "name": "footy-bot",
     "version": "1.0.0",
     "main": "source/server.ts",
-    "repository": "https://github.com/supalarry/od-cli-api",
+    "repository": "https://github.com/supalarry/FootyBot",
     "author": "Larry <lauris.skraucis@gmail.com>",
     "license": "MIT",
     "private": false,
