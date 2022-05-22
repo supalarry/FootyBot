@@ -2,6 +2,15 @@ import { Context as Telegraf } from 'telegraf';
 import { CHAT_TYPE } from '../shared/constants';
 import { TextMessage } from '../shared/types';
 
+export function isStop(message: TextMessage) {
+    const trimmed = message.text.trim();
+    const lowercase = trimmed.toLocaleLowerCase();
+    if (lowercase === 'stop') {
+        return true;
+    }
+    return false;
+}
+
 export function isUrl(message: TextMessage) {
     if (message.entities?.[0]?.type === 'url') {
         return true;

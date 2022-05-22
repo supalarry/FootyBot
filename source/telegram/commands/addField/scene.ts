@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { Composer, Scenes } from 'telegraf';
 import * as Typegram from 'telegraf/src/core/types/typegram';
-import { isUrl } from '../../helpers/message';
+import { isStop, isUrl } from '../../helpers/message';
+import { displayStopMessage } from '../../helpers/reply';
 
 export const sceneId = 'super-wizard';
 
@@ -16,6 +17,10 @@ const addFieldScene = new Scenes.WizardScene(
     },
     async (ctx) => {
         const message = ctx.message as Typegram.Message.TextMessage;
+        if (isStop(message)) {
+            displayStopMessage(ctx);
+            return await ctx.scene.leave();
+        }
         if (isUrl(message)) {
             await ctx.reply('🥳 Amazing! Now, anyone can organize a match there!');
             await ctx.reply('👀 View available fields using /list_football_fields command.');
