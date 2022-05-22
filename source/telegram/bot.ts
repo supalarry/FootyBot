@@ -5,12 +5,18 @@ import { addFieldScene } from './commands/addField/scene';
 import { addFieldCommand } from './commands/addField/command';
 
 function startTelegramBot() {
+    stopCurrentBotInstance();
     const bot = createBot();
     addSession(bot);
     addScenes(bot);
     addCommands(bot);
     launchBot(bot);
     enableGracefulStop(bot);
+}
+
+function stopCurrentBotInstance() {
+    (Telegraf as any).webhookServer?.close();
+    (Telegraf as any).polling?.stop();
 }
 
 function createBot() {
