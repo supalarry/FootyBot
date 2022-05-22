@@ -1,6 +1,6 @@
 # FootyBot
 
-FootyBot helps organizing football matches ⚽. It is a Telegram Bot and can be added to any group.
+FootyBot helps organizing football matches. It is a Telegram Bot and can be added to any group.
 
 ```
                      ___
@@ -11,7 +11,7 @@ FootyBot helps organizing football matches ⚽. It is a Telegram Bot and can be 
 
 ## Local development environment
 
-Finish next sections in the order listed.
+Finish the next sections in the order listed.
 
 ### Environment requirements
 
@@ -62,6 +62,13 @@ password: postgres
 database: postgres
 ```
 
+```
+                     ___
+ o__        o__     |   |\
+/|          /\      |   |X\
+/ >    o     <\     |   |XX\
+```
+
 ## Telegram bot
 
 Within `dev` and `prod` doppler configs we have a `TELEGRAM_KEY` token. It points to a specific Telegram bot and is used to set up a client via which we interact with Telegram.
@@ -73,6 +80,13 @@ Name: `FootyTestBot`; Username: `football_with_footy_test_bot`; Link: `t.me/foot
 ### Production environment
 
 Name: `FootyBot`; Username: `football_with_footy_bot`; Link: `t.me/football_with_footy_bot`;
+
+```
+                     ___
+ o__        o__     |   |\
+/|          /\      |   |X\
+/ >       o  <\     |   |XX\
+```
 
 ## Telegram bot commands
 
@@ -101,9 +115,23 @@ description: add a new football field
 
 Response: `{ "message": "pong" }`
 
+```
+                     ___
+ o__        o__     |   |\
+/|          /\      |   |X\
+/ >          <\  o  |   |XX\
+```
+
 ## Tech stack
 
 1. Node.js + Express + TypeScript
 2. Server hosted on Render
 3. Postgres database hosted in Supabase
 4. Secrets managed by Doppler
+
+```
+                     ___
+ o__        o__     |   |\
+/|          /\      |   |X\
+/ >          <\     | o |XX\
+```
