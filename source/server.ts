@@ -1,13 +1,13 @@
 import express, { Request, Response } from 'express';
 import Logger from './services/logger';
 import server from './config/server';
-import { launchTelegramBot } from './telegram/index';
+import { startTelegramBot } from './telegram/bot';
 
 const NAMESPACE = 'Server';
 
 const router = express();
 
-launchTelegramBot();
+startTelegramBot();
 
 // API health check
 router.get('/ping', (req: Request, res: Response) => {
