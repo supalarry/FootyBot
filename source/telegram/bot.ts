@@ -106,5 +106,3 @@ function enableGracefulStop(bot: Telegraf<Scenes.WizardContext>) {
         Logger.info(NAMESPACE, 'Finished terminating bot on SIGTERM.');
     });
 }
-
-export { startTelegramBot };
