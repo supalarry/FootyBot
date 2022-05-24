@@ -4,11 +4,11 @@
     "main": "source/telegram/bot.ts",
     "repository": "https://github.com/supalarry/FootyBot",
     "author": "Larry <lauris.skraucis@gmail.com>",
-    "private": false,
+    "private": true,
     "license": "UNLICENSED",
     "engines": {
         "node": "^16.x",
-        "pnpm": ">= 6.0.0"
+        "pnpm": ">= 7.0.0"
     },
     "scripts": {
         "dev": "pnpm dev:database && pnpm dev:bot",
@@ -21,7 +21,6 @@
         "start": "doppler run -- node ./build/telegram/bot.js"
     },
     "devDependencies": {
-        "@types/express": "4.17.13",
         "@types/node": "17.0.35",
         "nodemon": "2.0.12",
         "prettier": "2.4.1",
@@ -31,7 +30,6 @@
     },
     "dependencies": {
         "@prisma/client": "3.12.0",
-        "express": "4.18.1",
         "ngrok": "4.3.1",
         "telegraf": "4.8.2"
     },
