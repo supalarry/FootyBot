@@ -13,8 +13,8 @@
     "scripts": {
         "dev": "pnpm dev:database && pnpm dev:bot",
         "dev:database": "supabase start",
-        "migrate:dev": "doppler run -- pnpm prisma migrate dev",
         "dev:bot": "doppler run -- nodemon source/telegram/bot.ts",
+        "dev:migrate": "doppler run -- pnpm prisma migrate dev",
         "build": "rm -rf build && pnpm build:prisma && prettier --write source/ && tsc",
         "build:prisma": "prisma generate",
         "migrate:deploy": "doppler run -- pnpm prisma migrate deploy",
