@@ -1,11 +1,12 @@
 import { Scenes, session, Telegraf } from 'telegraf';
+import { isDevelopment } from '../helpers/environment';
 import config from '../config/server';
 import Logger from '../services/logger';
-// all controllers
+// all scenes. add them to array returned by loadScenes()
 import { addFieldScene } from './commands/addField/scene';
-// all routes
+// all commands. add them to array returned by loadCommands()
 import { addFieldCommand } from './commands/addField/command';
-import { isDevelopment } from '../helpers/environment';
+import { healthCheck } from './commands/healthCheck/command';
 
 const NAMESPACE = 'telegram/bot.ts';
 
@@ -59,7 +60,7 @@ function addCommands(bot: Telegraf<Scenes.WizardContext>) {
 }
 
 function loadCommands() {
-    return [addFieldCommand];
+    return [addFieldCommand, healthCheck];
 }
 
 function launchBot(bot: Telegraf<Scenes.WizardContext>) {
