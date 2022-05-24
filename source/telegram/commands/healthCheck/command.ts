@@ -1,4 +1,6 @@
 import { Scenes, Telegraf } from 'telegraf';
+import Logger from '../../../services/logger';
+import { NAMESPACE } from './constants';
 
 const command = 'healthCheck';
 
@@ -6,6 +8,7 @@ const command = 'healthCheck';
 // if our server is running.
 function healthCheck(bot: Telegraf<Scenes.WizardContext>) {
     bot.command(command, (ctx) => {
+        Logger.info(NAMESPACE, 'bot health was checked');
         ctx.reply('Bot is alive');
     });
 }
