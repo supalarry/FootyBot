@@ -18,6 +18,6 @@ router.get('/ping', (req: Request, res: Response) => {
     });
 });
 
-router.listen(server.port, () => {
-    Logger.info(NAMESPACE, `[${server.environment}] Server is running ${server.hostname}:${server.port}`);
-});
+// router.listen(server.port, () => {
+//     Logger.info(NAMESPACE, `[${server.environment}] Server is running ${server.hostname}:${server.port}`);
+// });
