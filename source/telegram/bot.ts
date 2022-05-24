@@ -1,8 +1,13 @@
 import { Scenes, session, Telegraf } from 'telegraf';
+import config from '../config/server';
+import Logger from '../services/logger';
 // all controllers
 import { addFieldScene } from './commands/addField/scene';
 // all routes
 import { addFieldCommand } from './commands/addField/command';
+import { isDevelopment } from '../helpers/environment';
+
+const NAMESPACE = 'telegram/bot.ts';
 
 function startTelegramBot() {
     const bot = createBot();
@@ -14,6 +19,7 @@ function startTelegramBot() {
 }
 
 function createBot() {
+    Logger.info(NAMESPACE, 'Start creating bot...');
     const token = process.env.TELEGRAM_KEY;
 
     if (!token) {
@@ -21,17 +27,22 @@ function createBot() {
     }
 
     const bot = new Telegraf<Scenes.WizardContext>(token);
+    Logger.info(NAMESPACE, 'Finished creating bot.');
     return bot;
 }
 
 function addSession(bot: Telegraf<Scenes.WizardContext>) {
+    Logger.info(NAMESPACE, 'Start adding bot session...');
     bot.use(session());
+    Logger.info(NAMESPACE, 'Finished adding bot session.');
 }
 
 function addScenes(bot: Telegraf<Scenes.WizardContext>) {
+    Logger.info(NAMESPACE, 'Start adding bot scenes...');
     const scenes = loadScenes();
     const stage = new Scenes.Stage<Scenes.WizardContext>(scenes);
     bot.use(stage.middleware());
+    Logger.info(NAMESPACE, 'Finished adding bot scenes.');
 }
 
 function loadScenes() {
@@ -39,10 +50,12 @@ function loadScenes() {
 }
 
 function addCommands(bot: Telegraf<Scenes.WizardContext>) {
+    Logger.info(NAMESPACE, 'Start adding commands scenes...');
     const commands = loadCommands();
     commands.forEach((command) => {
         command(bot);
     });
+    Logger.info(NAMESPACE, 'Finished adding commands scenes.');
 }
 
 function loadCommands() {
@@ -50,12 +63,34 @@ function loadCommands() {
 }
 
 function launchBot(bot: Telegraf<Scenes.WizardContext>) {
-    bot.launch();
+    Logger.info(NAMESPACE, 'Start launching bot...');
+    bot.launch({
+        webhook: {
+            domain: getBotDomain(),
+            port: config.port
+        }
+    });
+    Logger.info(NAMESPACE, 'Finished launching bot.');
+}
+
+function getBotDomain() {
+    if (isDevelopment()) {
+        return 'https://tangy-baboons-arrive-109-116-70-124.loca.lt';
+    }
+    return process.env.RENDER_EXTERNAL_URL;
 }
 
 function enableGracefulStop(bot: Telegraf<Scenes.WizardContext>) {
-    process.once('SIGINT', () => bot.stop('SIGINT'));
-    process.once('SIGTERM', () => bot.stop('SIGTERM'));
+    process.once('SIGINT', () => {
+        Logger.info(NAMESPACE, 'Start terminating bot on SIGINT...');
+        bot.stop('SIGINT');
+        Logger.info(NAMESPACE, 'Finished terminating bot on SIGINT.');
+    });
+    process.once('SIGTERM', () => {
+        Logger.info(NAMESPACE, 'Start terminating bot on SIGTERM...');
+        bot.stop('SIGTERM');
+        Logger.info(NAMESPACE, 'Finished terminating bot on SIGTERM.');
+    });
 }
 
 export { startTelegramBot };
