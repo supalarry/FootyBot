@@ -21,6 +21,7 @@ const addFieldScene = new Scenes.WizardScene(
     async (ctx) => {
         const message = ctx.message as Typegram.Message.TextMessage;
         if (isStop(message)) {
+            Logger.info(NAMESPACE, 'scene left');
             displayStopMessage(ctx);
             return await ctx.scene.leave();
         }

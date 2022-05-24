@@ -1,6 +1,6 @@
 import { Scenes, session, Telegraf } from 'telegraf';
 import { isDevelopment } from '../helpers/environment';
-import config from '../config/server';
+import { config } from './config';
 import Logger from '../services/logger';
 const ngrok = require('ngrok');
 // all scenes. add them to array returned by loadScenes()
@@ -10,6 +10,10 @@ import { addFieldCommand } from './commands/addField/command';
 import { healthCheck } from './commands/healthCheck/command';
 
 const NAMESPACE = 'telegram/bot.ts';
+
+(async function () {
+    await startTelegramBot();
+})();
 
 async function startTelegramBot() {
     const bot = createBot();
@@ -68,19 +72,24 @@ async function launchBot(bot: Telegraf<Scenes.WizardContext>) {
     Logger.info(NAMESPACE, 'Start launching bot...');
     const domain = await getBotDomain();
     const port = config.port;
+
     bot.launch({
         webhook: {
             domain,
             port
         }
     });
-    Logger.info(NAMESPACE, `Finished launching bot on domain ${domain} and port ${port}`);
+
+    Logger.info(NAMESPACE, 'Launched bot. Launch information:');
+    Logger.info(NAMESPACE, `Launch environment: ${config.environment}`);
+    Logger.info(NAMESPACE, `Launch domain: ${domain}`);
+    Logger.info(NAMESPACE, `Launch port: ${port}`);
 }
 
 async function getBotDomain() {
     if (isDevelopment()) {
         const token = process.env.NGROK_KEY;
-        return await ngrok.connect({ addr: 3001, token });
+        return await ngrok.connect({ addr: config.port, token });
     }
     return process.env.RENDER_EXTERNAL_URL;
 }

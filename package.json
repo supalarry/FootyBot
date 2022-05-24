@@ -1,7 +1,7 @@
 {
     "name": "footy-bot",
     "version": "1.0.0",
-    "main": "source/server.ts",
+    "main": "source/telegram/bot.ts",
     "repository": "https://github.com/supalarry/FootyBot",
     "author": "Larry <lauris.skraucis@gmail.com>",
     "private": false,
@@ -11,14 +11,14 @@
         "pnpm": ">= 6.0.0"
     },
     "scripts": {
-        "dev": "pnpm dev:database && pnpm dev:server",
+        "dev": "pnpm dev:database && pnpm dev:bot",
         "dev:database": "supabase start",
         "migrate:dev": "doppler run -- pnpm prisma migrate dev",
-        "dev:server": "doppler run -- nodemon source/server.ts",
+        "dev:bot": "doppler run -- nodemon source/telegram/bot.ts",
         "build": "rm -rf build && pnpm build:prisma && prettier --write source/ && tsc",
         "build:prisma": "prisma generate",
         "migrate:deploy": "doppler run -- pnpm prisma migrate deploy",
-        "start": "doppler run -- node ./build/server.js"
+        "start": "doppler run -- node ./build/telegram/bot.js"
     },
     "devDependencies": {
         "@types/express": "4.17.13",

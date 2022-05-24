@@ -7,3 +7,7 @@ export function isProduction() {
 export function isDevelopment() {
     return process.env.ENVIRONMENT === ENVIRONMENTS.DEVELOPMENT;
 }
+
+export function getEnvironment() {
+    return process.env.ENVIRONMENT;
+}
