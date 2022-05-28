@@ -6,7 +6,7 @@ import { displayStopMessage } from '../../helpers/reply';
 import { NAMESPACE } from './constants';
 import Logger from '../../../services/logger';
 
-export const sceneId = 'super-wizard';
+export const sceneId = 'addFieldScene';
 
 const stepHandler = new Composer<Scenes.WizardContext>();
 

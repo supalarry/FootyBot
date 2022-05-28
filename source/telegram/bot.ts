@@ -5,8 +5,10 @@ import Logger from '../services/logger';
 const ngrok = require('ngrok');
 // all scenes. add them to array returned by loadScenes()
 import { addFieldScene } from './commands/addField/scene';
+import { startScene } from './commands/start/scene';
 // all commands. add them to array returned by loadCommands()
 import { addFieldCommand } from './commands/addField/command';
+import { startCommand } from './commands/start/command';
 import { healthCheck } from './commands/healthCheck/command';
 
 const NAMESPACE = 'telegram/bot.ts';
@@ -52,7 +54,7 @@ function addScenes(bot: Telegraf<Scenes.WizardContext>) {
 }
 
 function loadScenes() {
-    return [addFieldScene];
+    return [addFieldScene, startScene];
 }
 
 function addCommands(bot: Telegraf<Scenes.WizardContext>) {
@@ -65,7 +67,7 @@ function addCommands(bot: Telegraf<Scenes.WizardContext>) {
 }
 
 function loadCommands() {
-    return [addFieldCommand, healthCheck];
+    return [addFieldCommand, startCommand, healthCheck];
 }
 
 async function launchBot(bot: Telegraf<Scenes.WizardContext>) {

@@ -96,6 +96,7 @@ Here is the list of our commands:
 
 ```
 add_field - Add a new football field
+start - Sends an automatic welcome message when user opens bot for the first time
 ```
 
 If you want to add a new command:
