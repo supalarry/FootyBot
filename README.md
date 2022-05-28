@@ -43,6 +43,9 @@ We are using supabase which runs Postgres. Next, we use Prisma to interact with 
 doppler run -- npx prisma migrate dev --init
 ```
 
+3. After you change prisma `schema.prisma` which is the blueprint for our database, with database running locally run: `doppler run -- pnpx prisma migrate dev --name db_user` Replace db_user with the
+   name of your migration. In short, to evolve database change prisma schema and run migrate dev commands.
+
 ### Starting development environment
 
 1. Run `pnpm install` to install dependencies.
