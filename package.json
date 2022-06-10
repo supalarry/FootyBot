@@ -15,8 +15,7 @@
         "dev:database": "supabase start",
         "dev:bot": "doppler run -- nodemon source/telegram/bot.ts",
         "dev:migrate": "doppler run -- pnpm prisma migrate dev",
-        "build": "rm -rf build && pnpm build:prisma && prettier --write source/ && tsc",
-        "build:prisma": "prisma generate",
+        "build": "rm -rf build && prettier --write source/ && tsc",
         "migrate:deploy": "doppler run -- pnpm prisma migrate deploy",
         "start": "doppler run -- node ./build/telegram/bot.js"
     },
