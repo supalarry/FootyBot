@@ -43,7 +43,12 @@ const addFieldScene = new Scenes.WizardScene(
         if (isUrl(message)) {
             // @ts-ignore
             ctx.session.field.link = message.text;
-
+            // @ts-ignore
+            const field = await getExistingField(ctx.session.field);
+            if (!field) {
+                // @ts-ignore
+                await createNewField(ctx.session.field);
+            }
             await ctx.reply('🥳 Amazing! Now, anyone can organize a match there!');
             await ctx.reply('👀 View available fields using /list_football_fields command.');
             await ctx.reply('📅 Organize a game using /organize_game command.');
@@ -57,23 +62,22 @@ const addFieldScene = new Scenes.WizardScene(
     stepHandler
 );
 
-async function createNewField({ name: string, link: string }) {
-    // user = await prisma.footballField.findUnique({
-    //     where: {
-    //         telegram_id: from.id
-    //     }
-    // });
-    // if (!user) {
-    //     user = await prisma.user.create({
-    //         data: {
-    //             telegram_id: from.id,
-    //             first_name: from.first_name,
-    //             username: from.username,
-    //             language_code: from.language_code
-    //         }
-    //     });
-    // }
-    // return user;
+async function getExistingField<T extends { name: string; link: string }>(field: T) {
+    return await prisma.footballField.findUnique({
+        where: {
+            name: field.name
+        }
+    });
+}
+
+async function createNewField<T extends { name: string; link: string }>(field: T) {
+    const newField = await prisma.footballField.create({
+        data: {
+            name: field.name,
+            link: field.link
+        }
+    });
+    return newField;
 }
 
 export { addFieldScene };

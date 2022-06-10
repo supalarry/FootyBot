@@ -17,6 +17,6 @@ model User {
 
 model FootballField {
   id   Int    @id @default(autoincrement())
-  name String @db.VarChar(255)
-  link String @db.VarChar(255)
+  name String @unique @db.VarChar(255)
+  link String @unique @db.VarChar(255)
 }
