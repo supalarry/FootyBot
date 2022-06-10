@@ -5,6 +5,7 @@ import { isStop, isUrl } from '../../helpers/message';
 import { displayStopMessage } from '../../helpers/reply';
 import { NAMESPACE } from './constants';
 import Logger from '../../../services/logger';
+import { prisma } from '../../prisma/client';
 
 export const sceneId = 'addFieldScene';
 
@@ -14,8 +15,22 @@ const addFieldScene = new Scenes.WizardScene(
     sceneId,
     async (ctx) => {
         Logger.info(NAMESPACE, 'scene entered');
-        await ctx.reply('📍Please, share with me the Google Maps link. Follow the instructions:', { reply_markup: { force_reply: true } });
-        await ctx.replyWithAnimation('https://media3.giphy.com/media/gIHxpiP5OE8zYyzhF5/giphy.gif?cid=790b7611c36a00f141a60ceeee95c4f9ee87e1f0867f0760&rid=giphy.gif&ct=g');
+
+        // @ts-ignore
+        ctx.session.field = {};
+
+        await ctx.reply('What is the name of the football field?', { reply_markup: { force_reply: true } });
+        return ctx.wizard.next();
+    },
+    async (ctx) => {
+        Logger.info(NAMESPACE, 'scene entered');
+
+        const message = ctx.message as Typegram.Message.TextMessage;
+
+        // @ts-ignore
+        ctx.session.field.name = message.text;
+
+        await ctx.reply('What is the Google Maps link of the football field?', { reply_markup: { force_reply: true } });
         return ctx.wizard.next();
     },
     async (ctx) => {
@@ -26,6 +41,9 @@ const addFieldScene = new Scenes.WizardScene(
             return await ctx.scene.leave();
         }
         if (isUrl(message)) {
+            // @ts-ignore
+            ctx.session.field.link = message.text;
+
             await ctx.reply('🥳 Amazing! Now, anyone can organize a match there!');
             await ctx.reply('👀 View available fields using /list_football_fields command.');
             await ctx.reply('📅 Organize a game using /organize_game command.');
@@ -38,5 +56,24 @@ const addFieldScene = new Scenes.WizardScene(
     },
     stepHandler
 );
+
+async function createNewField({ name: string, link: string }) {
+    // user = await prisma.footballField.findUnique({
+    //     where: {
+    //         telegram_id: from.id
+    //     }
+    // });
+    // if (!user) {
+    //     user = await prisma.user.create({
+    //         data: {
+    //             telegram_id: from.id,
+    //             first_name: from.first_name,
+    //             username: from.username,
+    //             language_code: from.language_code
+    //         }
+    //     });
+    // }
+    // return user;
+}
 
 export { addFieldScene };
